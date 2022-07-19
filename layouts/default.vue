@@ -1,20 +1,8 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
+    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
+        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -24,7 +12,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar :clipped-left="clipped" fixed app dark color="dark-grey">
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
       </v-btn>
@@ -85,17 +73,17 @@ export default {
         {
           icon: "mdi-account-supervisor-circle-outline",
           title: "Clients",
-          to: "/inspire",
+          to: "/clients",
         },
         {
           icon: "mdi-trending-up",
           title: "Marketing",
-          to: "/inspire",
+          to: "/marketing",
         },
         {
           icon: "mdi-storefront-outline",
           title: "My Business",
-          to: "/inspire",
+          to: "/business",
         },
       ],
       miniVariant: true,

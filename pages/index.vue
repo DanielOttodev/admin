@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
       <v-col lg="8">
         <h2>My Dashboard</h2>
@@ -8,15 +8,18 @@
         </v-sheet>
       </v-col>
       <v-col lg="4" justify="end">
-        <v-btn color="blue-grey darken-2" dark> New Appointment </v-btn>
-        <v-btn outlined text> Break </v-btn>
-               <v-sheet class="mt-10">
-                <v-card>
-                  <v-card-title>
-                    Latest News
-                  </v-card-title>
-  </v-card>
-  </v-sheet>
+        <v-btn class="text-capitalize" color="blue-grey darken-2" dark> New Appointment </v-btn>
+        <v-btn class="text-capitalize" outlined text>Add Block</v-btn>
+        <v-sheet class="mt-10">
+          <v-card>
+            <v-card-title>
+              Latest News
+            </v-card-title>
+            <v-divider> </v-divider>
+            <v-card-text>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non hic, nihil explicabo voluptatibus
+              eum ad facilis asperiores et tempora ullam!</v-card-text>
+          </v-card>
+        </v-sheet>
       </v-col>
     </v-row>
   </v-container>
