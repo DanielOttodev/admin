@@ -9,7 +9,7 @@
       </v-col>
       <v-col lg="4" justify="end">
         <v-btn class="text-capitalize" color="blue-grey darken-2" dark> New Appointment </v-btn>
-        <v-btn class="text-capitalize" outlined text>Add Block</v-btn>
+        <v-btn class="text-capitalize" outlined text>Guest Checkout</v-btn>
         <v-sheet class="mt-10">
           <v-card>
             <v-card-title>

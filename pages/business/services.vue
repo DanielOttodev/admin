@@ -1,12 +1,30 @@
 <template>
     <v-container>
-        <h3>Services</h3>
+        <v-row>
+            <v-col>
+                <v-card class="text-center">
+                    <v-card-title>Services
+                        <v-btn @click="toService()" right absolute small color="warning" dark>Add
+                            New</v-btn>
+                    </v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text>You currently have no services! <a @click="toService()">Add a service to
+                            create bookings.
+                        </a>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
 <script>
 export default {
-
+    methods: {
+        toService() {
+            this.$router.push('/business/addservice')
+        }
+    }
 }
 </script>
 
