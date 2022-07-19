@@ -29,25 +29,15 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+     
       <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
+
+
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn
@@ -93,25 +83,45 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
+      clipped: true,
+      drawer: true,
+      fixed: true,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-home-variant-outline',
+          title: 'Dashboard',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
+          icon: 'mdi-calendar-range',
+          title: 'Calendar',
+          to: '/calendar'
+        },
+                {
+          icon: 'mdi-book-outline',
+          title: 'Classes',
+          to: '/inspire'
+        },
+                {
+          icon: 'mdi-account-supervisor-circle-outline',
+          title: 'Clients',
+          to: '/inspire'
+        },
+                {
+          icon: 'mdi-trending-up',
+          title: 'Marketing',
+          to: '/inspire'
+        },
+                {
+          icon: 'mdi-storefront-outline',
+          title: 'My Business',
           to: '/inspire'
         }
       ],
-      miniVariant: false,
+      miniVariant: true,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Schedulify'
     }
   }
 }
