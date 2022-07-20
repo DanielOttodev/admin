@@ -1,11 +1,11 @@
 <template>
     <v-container>
         <v-row>
-            <v-col>
-                <v-select v-model="thours" solo label="Hours" :items="hours"></v-select>
+            <v-col class="shrink">
+                <v-select v-model="thours" outlined label="Hours" :items="hours"></v-select>
             </v-col>
-            <v-col>
-                <v-select v-model="tminutes" solo label="Minutes" :items="hours"></v-select>
+            <v-col class="shrink">
+                <v-select v-model="tminutes" outlined label="Min" :items="hours"></v-select>
             </v-col>
         </v-row>
     </v-container>

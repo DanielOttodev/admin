@@ -1,6 +1,8 @@
 <template>
     <v-container>
-        <v-card>
+        <v-row justify="center">
+            <v-col >
+<v-card max-width="1000" class="mx-auto" >
             <v-card-title>Service Details</v-card-title>
             <v-divider />
             <v-container>
@@ -50,6 +52,10 @@
                 </v-row>
             </v-card-actions>
         </v-card>
+            </v-col>
+
+        </v-row>
+        
     </v-container>
 </template>
 

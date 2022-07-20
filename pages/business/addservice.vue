@@ -1,9 +1,14 @@
 <template>
     <v-sheet>
+        <v-row>
+            <v-col>
         <v-btn left absolute text outlined small>
             <v-icon @click="routeBack()">mdi-chevron-double-left</v-icon>
         </v-btn>
-        <v-container>
+            </v-col>
+        </v-row>
+
+        <v-container class="ml-3 mt-5">
             <AddServiceForm />
         </v-container>
     </v-sheet>
