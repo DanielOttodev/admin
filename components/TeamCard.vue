@@ -5,7 +5,7 @@
         <v-card class="text-center" max-width="750">
           <v-card-title
             >Team Members
-            <v-btn absolute small outlined text light right color="primary">
+            <v-btn @click="toAdd()" absolute small outlined text light right color="primary">
               <v-icon x-small>mdi-plus</v-icon> Add New</v-btn
             >
           </v-card-title>
@@ -52,7 +52,12 @@ export default {
                 role:"Admin"
             }
         ]
-    })
+    }),
+    methods:{
+      toAdd(){
+        this.$router.push('/business/team/add')
+      }
+    }
 };
 </script>
 

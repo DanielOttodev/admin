@@ -45,9 +45,9 @@
             <v-divider></v-divider>
             <v-card-actions>
                 <v-row class="my-1 mr-1" justify="end">
-                    <v-btn outlined color="deep-orange lighten-1" class="mr-2 text-capitalize" dark>Save and create new
+                    <v-btn outlined color="primary" class="mr-2 text-capitalize" dark>Save and create new
                     </v-btn>
-                    <v-btn color="deep-orange lighten-1" class="text-capitalize" dark>Save</v-btn>
+                    <v-btn color="primary" class="text-capitalize" dark>Save</v-btn>
 
                 </v-row>
             </v-card-actions>

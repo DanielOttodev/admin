@@ -2,9 +2,7 @@
     <v-sheet>
         <v-row>
             <v-col>
-        <v-btn left absolute text outlined small>
-            <v-icon @click="routeBack()">mdi-chevron-double-left</v-icon>
-        </v-btn>
+                <GoBackButton/>
             </v-col>
         </v-row>
 
@@ -17,13 +15,10 @@
 
 <script>
 import AddServiceForm from "../../components/AddServiceForm.vue";
+import GoBackButton from "../../components/GoBackButton.vue";
 export default {
-    methods: {
-        routeBack() {
-            this.$router.back();
-        }
-    },
-    components: { AddServiceForm }
+
+    components: { AddServiceForm, GoBackButton }
 }
 </script>
 

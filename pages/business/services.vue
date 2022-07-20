@@ -4,7 +4,7 @@
             <v-col>
                 <v-card class="text-center">
                     <v-card-title>Services
-                        <v-btn @click="toService()" right absolute small color="warning" dark>Add
+                        <v-btn @click="toService()" right absolute small color="primary" dark>Add
                             New</v-btn>
                     </v-card-title>
                     <v-divider></v-divider>
