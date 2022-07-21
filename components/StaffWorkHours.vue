@@ -8,7 +8,7 @@
         
         <v-row>
             <v-col>
-                <v-btn  text small outlined color="primary" class="text-capitalize">Change Hours</v-btn>
+                <v-btn @click="changeHours()"  text small outlined color="primary" class="text-capitalize">Change Hours</v-btn>
 <v-list>
       <v-list-item
         v-for="item in hours"
@@ -48,7 +48,12 @@ data:() => ({
         {day:'Saturday',time:"8am - 12pm"},
         {day:'Sunday',time:"None"},
     ]
-})
+}),
+methods:{
+  changeHours(){
+    this.$router.push(`/business/team/member/hours?id=${this.$route.query.id}`)
+  }
+}
 }
 </script>
 
