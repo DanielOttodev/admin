@@ -1,19 +1,18 @@
 <template>
   <v-container>
+    <v-row justify="start">
+      <GoBackButton />
+    </v-row>
     <v-row>
       <v-col>
-        <v-card class="pt-5">
+        <v-card class="pt-5 mt-10">
           <v-row>
             <v-col class="pl-5">
-              <v-img
-                src="/avatar.png"
-                :contain="true"
-                max-width="150"
-                max-height="150"
-              ></v-img>
+              <v-img src="/avatar.png" :contain="true" max-width="150" max-height="150"></v-img>
               <v-btn class="ml-3" text small>Change Image</v-btn>
 
               <h3 class="ml-8">{{ name }}</h3>
+
               <h5>{{ email }}</h5>
               <h5>{{ phone }}</h5>
             </v-col>
@@ -30,16 +29,10 @@
           </v-row>
           <v-card-actions>
             <v-row>
-              <v-col
-                ><v-btn
-                  @click="editInfo()"
-                  text
-                  color="primary"
-                  outlined
-                  class="text-capitalize float-right"
-                  >Edit</v-btn
-                ></v-col
-              >
+              <v-col>
+                <v-btn @click="editInfo()" text color="primary" outlined class="text-capitalize float-right">Edit
+                </v-btn>
+              </v-col>
             </v-row>
           </v-card-actions>
         </v-card>
@@ -52,14 +45,12 @@
             Available Services
             <v-btn text small right absolute>
               <v-icon small color="primary">mdi-plus</v-icon> Assign
-              Services</v-btn
-            >
+              Services
+            </v-btn>
           </v-card-title>
           <v-divider></v-divider>
-          <v-card-text
-            >Add services for {{ name }} to configure individual
-            rates</v-card-text
-          >
+          <v-card-text>Add services for {{ name }} to configure individual
+            rates</v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -68,8 +59,8 @@
         <StaffWorkHours />
       </v-col>
       <v-col cols="12" lg="6">
-        <v-card
-          ><v-card-title>History</v-card-title>
+        <v-card>
+          <v-card-title>History</v-card-title>
           <v-divider />
           <v-data-table> </v-data-table>
         </v-card>
@@ -80,6 +71,7 @@
 
 <script>
 import StaffWorkHours from "../../../../components/StaffWorkHours.vue";
+import GoBackButton from "../../../../components/GoBackButton.vue";
 export default {
   data: () => ({
     email: "otto_281@hotmail.com",
@@ -87,7 +79,7 @@ export default {
     notify_email: "otto_281@hotmail.com",
     name: "Daniel Otto",
   }),
-  components: { StaffWorkHours },
+  components: { StaffWorkHours, GoBackButton },
 
   methods: {
     pageLoad() {
@@ -95,6 +87,7 @@ export default {
     },
     editInfo() {
       this.$router.push(`/business/team/edit?id=${this.$route.query.id}`);
+
     },
   },
 };
