@@ -11,8 +11,12 @@
 
 <script>
 import Schedule from '../components/Schedule.vue';
+import Cal2 from '../components/Cal2.vue';
 export default {
-    components: { Schedule }
+    components: { Schedule, Cal2 },
+    data: () => ({
+
+    })
 }
 </script>
 
