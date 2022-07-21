@@ -20,7 +20,7 @@
           <v-simple-table >
             <template >
                 <tbody>
-                    <tr class="t-item" v-for="item in staff" :key="item.id">
+                    <tr @click="toStaff(item)" class="t-item" v-for="item in staff" :key="item.id">
                     <td class="align-left"><v-icon>mdi-account</v-icon></td>
                     <td>{{item.name}}</td>
                     <td>{{item.role}}</td>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+
 export default {
     data:() => ({
         staff:[
@@ -56,6 +57,9 @@ export default {
     methods:{
       toAdd(){
         this.$router.push('/business/team/add')
+      },
+      toStaff(e){
+         this.$router.push(`/business/team/member?id=${e.id}`)
       }
     }
 };

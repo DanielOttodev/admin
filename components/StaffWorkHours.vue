@@ -21,19 +21,15 @@
         <v-list-item-content>
           <v-list-item-title v-text="item.day"></v-list-item-title>
         </v-list-item-content>
-        <v-divider vertical class="mr-10"></v-divider>
-        <v-list-item-content >
+       
+        <v-list-item-content class="text-right" >
           <v-list-item-title v-text="item.time"></v-list-item-title>
         </v-list-item-content>
-                <v-list-item-content>
 
-        </v-list-item-content>
       </v-list-item>
     </v-list>
             </v-col>
-            <v-col>
-
-            </v-col>
+        <v-col></v-col>
         </v-row>
     </v-container>
    
@@ -49,8 +45,8 @@ data:() => ({
         {day:'Wednesday',time:"9am - 5pm"},
         {day:'Thursday',time:"9am - 5pm"},
         {day:'Friday',time:"9am - 5pm"},
-        {day:'Saturday',time:"9am - 5pm"},
-        {day:'Sunday',time:"9am - 5pm"},
+        {day:'Saturday',time:"8am - 12pm"},
+        {day:'Sunday',time:"None"},
     ]
 })
 }

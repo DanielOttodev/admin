@@ -11,10 +11,11 @@
                 max-width="150"
                 max-height="150"
               ></v-img>
+              <v-btn class="ml-3" text small>Change Image</v-btn>
 
               <h3 class="ml-8">{{ name }}</h3>
-              <h4>{{ email }}</h4>
-              <h4>{{ phone }}</h4>
+              <h5 >{{ email }}</h5>
+              <h5>{{ phone }}</h5>
             </v-col>
             <v-col>
               <h4>
@@ -27,7 +28,7 @@
           <v-card-actions>
             <v-row>
               <v-col
-                ><v-btn text color="primary" outlined class="text-capitalize float-right"
+                ><v-btn @click="editInfo()" text color="primary" outlined class="text-capitalize float-right"
                   >Edit</v-btn
                 ></v-col
               >
@@ -49,10 +50,12 @@
         </v-col>
     </v-row>
   <v-row>
-    <v-col>
+    <v-col  cols="12"  lg="6" >
       <StaffWorkHours/>
     </v-col>
-    <v-col></v-col>
+    <v-col cols="12" lg="6"  >
+      <v-card><v-card-title>Hey</v-card-title></v-card>
+    </v-col>
   </v-row>
   </v-container>
 </template>
@@ -66,7 +69,16 @@ export default {
         notify_email: "otto_281@hotmail.com",
         name: "Daniel Otto",
     }),
-    components: { StaffWorkHours }
+    components: { StaffWorkHours },
+
+    methods:{
+    pageLoad(){
+      // Fetch staff details
+    },
+    editInfo(){
+      this.$router.push(`/business/team/edit?id=${this.$route.query.id}`)
+    }
+    }
 };
 </script>
 
