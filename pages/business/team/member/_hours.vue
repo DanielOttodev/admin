@@ -16,12 +16,12 @@
                             <p class="text-right mt-4 ">{{ i.day }} :</p>
                         </v-col>
                         <v-col>
-                            <v-select v-if="i.in" class="inline shrink" color="primary" v-model="from" dense
+                            <v-select :disabled="!i.in" class="inline shrink" color="primary" v-model="i.from" dense
                                 :items="timeRange" label="from" outlined></v-select>
                         </v-col>
                         <v-col>
-                            <v-select v-if="i.in" label="to" color="primary" v-model="to" dense :items="timeRange"
-                                outlined>
+                            <v-select :disabled="!i.in" label="to" color="primary" v-model="i.to" dense
+                                :items="timeRange" outlined>
                             </v-select>
                         </v-col>
                         <v-col>

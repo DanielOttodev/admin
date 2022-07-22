@@ -2,15 +2,15 @@
     <v-container class="ma-0" fluid>
         <v-row>
             <v-col>
-                <v-select label="Operator"></v-select>
+                <v-select outlined :items="team" v-model="selected" label="Currently viewing"></v-select>
             </v-col>
         </v-row>
         <v-row>
-            <v-col cols="9">
+            <v-col cols="12">
                 <Schedule />
 
             </v-col>
-            <v-col cols="3"></v-col>
+
         </v-row>
     </v-container>
 </template>
@@ -20,7 +20,8 @@ import Schedule from '../components/Schedule.vue';
 export default {
     components: { Schedule },
     data: () => ({
-
+        selected: 'Daniel Otto',
+        team: ['Daniel Otto', 'John Doe', 'Jane Smith']
     })
 }
 </script>

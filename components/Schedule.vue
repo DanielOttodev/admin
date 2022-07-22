@@ -1,6 +1,6 @@
 <template>
     <v-row class="fill-height">
-        <v-col>
+        <v-col cols="12" md="9">
             <v-sheet height="600">
                 <v-toolbar flat>
                     <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday">
@@ -18,7 +18,7 @@
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-calendar light ref="calendar" v-model="value" interval-minutes="60" first-interval="9"
-                    interval-height="30" color="primary" type="week" interval-count="15" :events="events"
+                    interval-height="60" color="primary" type="week" interval-count="15" :events="events"
                     :event-color="getEventColor" :event-ripple="false" @click:event="showEvent" @change="getEvents"
                     @mousedown:event="startDrag" @mousedown:time="startTime" @mousemove:time="mouseMove"
                     @mouseup:time="endDrag" @mouseleave.native="cancelDrag">
@@ -53,6 +53,14 @@
                     </v-card>
                 </v-menu>
             </v-sheet>
+        </v-col>
+        <v-col cols="12" md="3">
+            <v-card>
+                <v-card-title>Event View</v-card-title>
+                <v-divider></v-divider>
+                <v-card-text>Click an event in the calendar to view its summary and make quick changes!</v-card-text>
+            </v-card>
+
         </v-col>
     </v-row>
 </template>
@@ -234,22 +242,25 @@ export default {
 
             this.events = events;
         },
-        showEvent({ nativeEvent, event }) {
-            const open = () => {
-                this.selectedEvent = event
-                this.selectedElement = nativeEvent.target
-                requestAnimationFrame(() => requestAnimationFrame(() => this.selectedOpen = true))
-            }
+        showEvent() {
 
-            if (this.selectedOpen) {
-                this.selectedOpen = false
-                requestAnimationFrame(() => requestAnimationFrame(() => open()))
-            } else {
-                open()
-            }
-
-            nativeEvent.stopPropagation()
         },
+        /* showEvent({ nativeEvent, event }) {
+             const open = () => {
+                 this.selectedEvent = event
+                 this.selectedElement = nativeEvent.target
+                 requestAnimationFrame(() => requestAnimationFrame(() => this.selectedOpen = true))
+             }
+ 
+             if (this.selectedOpen) {
+                 this.selectedOpen = false
+                 requestAnimationFrame(() => requestAnimationFrame(() => open()))
+             } else {
+                 open()
+             }
+ 
+             nativeEvent.stopPropagation()
+         },*/
         rnd(a, b) {
             return Math.floor((b - a + 1) * Math.random()) + a;
         },
@@ -261,6 +272,12 @@ export default {
 </script>
 <style scoped lang="scss">
 .v-event-draggable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     padding-left: 6px;
 }
 
