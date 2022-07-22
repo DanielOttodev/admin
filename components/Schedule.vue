@@ -18,12 +18,13 @@
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-calendar light ref="calendar" v-model="value" interval-minutes="60" first-interval="9"
-                    interval-height="60" color="primary" type="week" interval-count="15" :events="events"
-                    :event-color="getEventColor" :event-ripple="false" @click:event="showEvent" @change="getEvents"
-                    @mousedown:event="startDrag" @mousedown:time="startTime" @mousemove:time="mouseMove"
-                    @mouseup:time="endDrag" @mouseleave.native="cancelDrag">
+                    @click:time="showTime" interval-height="60" color="primary" type="week" interval-count="15"
+                    :events="events" :event-color="getEventColor" :event-ripple="false" @click:event="showEvent"
+                    @change="getEvents" @mousedown:event="startDrag" @mousedown:time="startTime"
+                    @mousemove:time="mouseMove" @mouseup:time="endDrag" @mouseleave.native="cancelDrag">
                     <template v-slot:event="{ event, timed, eventSummary }">
                         <div class="v-event-draggable" v-html="eventSummary()"></div>
+
                         <div v-if="timed" class="v-event-drag-bottom" @mousedown.stop="extendBottom(event)"></div>
                     </template>
                 </v-calendar>
@@ -123,17 +124,18 @@ export default {
 
                 this.dragTime = mouse - start;
             } else {
-                console.log(mouse)
-                this.createStart = this.roundTime(mouse);
-                this.createEvent = {
-                    name: `Event #${this.events.length}`,
-                    color: this.rndElement(this.colors),
-                    start: this.createStart,
-                    end: this.createStart,
-                    timed: true,
-                };
-
-                this.events.push(this.createEvent);
+                /*
+                                this.createStart = this.roundTime(mouse);
+                
+                                this.createEvent = {
+                                    name: `Event #${this.events.length}`,
+                                    color: this.rndElement(this.colors),
+                                    start: this.createStart,
+                                    end: this.createStart,
+                                    timed: true,
+                                };
+                                console.log(this.createEvent);
+                                this.events.push(this.createEvent);*/
             }
         },
         extendBottom(event) {
@@ -244,6 +246,9 @@ export default {
         },
         showEvent() {
 
+        },
+        showTime(e) {
+            this.$router.push(`/appointments/create?t=${e.time}&d=${e.date}`)
         },
         /* showEvent({ nativeEvent, event }) {
              const open = () => {
