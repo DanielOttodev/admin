@@ -34,6 +34,8 @@ export default {
         date() {
             return this.$route.query.d
         }
+    }, mounted() {
+        console.log('ive been mounted')
     }
 }
 </script>

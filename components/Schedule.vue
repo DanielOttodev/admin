@@ -22,11 +22,13 @@
                     :events="events" :event-color="getEventColor" :event-ripple="false" @click:event="showEvent"
                     @change="getEvents" @mousedown:event="startDrag" @mousedown:time="startTime"
                     @mousemove:time="mouseMove" @mouseup:time="endDrag" @mouseleave.native="cancelDrag">
-                    <template v-slot:event="{ event, timed, eventSummary }">
+                    <template v-slot:event="{ eventSummary }">
                         <div class="v-event-draggable" v-html="eventSummary()"></div>
 
-                        <div v-if="timed" class="v-event-drag-bottom" @mousedown.stop="extendBottom(event)"></div>
                     </template>
+
+
+
                 </v-calendar>
                 <v-menu v-model="selectedOpen" :close-on-content-click="false" :activator="selectedElement" offset-x>
                     <v-card color="grey lighten-4" min-width="350px" flat>
@@ -239,15 +241,22 @@ export default {
                     start,
                     end,
                     timed,
+                    id: 1
                 });
             }
 
             this.events = events;
         },
-        showEvent() {
+        showEvent(e) {
+            console.log('clicked')
+            e.nativeEvent.preventDefault();
+            e.nativeEvent.stopPropagation();
+            let id = e.event.id;
+            this.$router.push(`/appointments/view?id=${e.event.id}`)
 
         },
         showTime(e) {
+            console.log('SHOWTIME');
             this.$router.push(`/appointments/create?t=${e.time}&d=${e.date}`)
         },
         /* showEvent({ nativeEvent, event }) {
