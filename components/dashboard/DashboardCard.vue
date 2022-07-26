@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-tabs v-model="tab" background-color="blue-grey lighten-4" fixed light>
+        <v-tabs v-model="tab" fixed light>
             <v-tabs-slider></v-tabs-slider>
 
             <v-tab class="text-capitalize" href="#tab-1"> Today </v-tab>

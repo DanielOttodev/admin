@@ -1,8 +1,7 @@
 <template >
     <v-container>
         <GoBackButtonRow />
-        <h3 class="mt-10">{{ time }}</h3>
-        <h3>{{ date }}</h3>
+
         <AppointmentView :time="time" :date="date" class="mt-10" />
     </v-container>
 </template>

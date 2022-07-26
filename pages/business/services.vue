@@ -8,7 +8,9 @@
                             New</v-btn>
                     </v-card-title>
                     <v-divider></v-divider>
-                    <v-card-text>You currently have no services! <a @click="toService()">Add a service to
+                    <v-card-text class="text-subtitle-1">You currently have no services! <a @click="toService()">Add a
+                            service
+                            to
                             create bookings.
                         </a>
                     </v-card-text>

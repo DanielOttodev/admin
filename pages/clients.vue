@@ -5,7 +5,7 @@
                 <v-card>
                     <v-card-title>
                         Clients
-                        <v-btn absolute right x-small>
+                        <v-btn class="primary" absolute right x-small>
                             <v-icon small>mdi-plus</v-icon> Add Client
                         </v-btn>
                     </v-card-title>
