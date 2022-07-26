@@ -17,7 +17,7 @@
                     </v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <v-calendar light ref="calendar" v-model="value" interval-minutes="60" first-interval="9"
+                <v-calendar class="round" light ref="calendar" v-model="value" interval-minutes="60" first-interval="9"
                     @click:time="showTime" interval-height="60" color="primary" type="week" interval-count="15"
                     :events="events" :event-color="getEventColor" :event-ripple="false" @click:event="showEvent"
                     @change="getEvents" @mousedown:event="startDrag" @mousedown:time="startTime"

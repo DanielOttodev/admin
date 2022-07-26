@@ -25,7 +25,7 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main class="blue-grey lighten-5">
       <v-container fluid>
         <Nuxt />
       </v-container>
