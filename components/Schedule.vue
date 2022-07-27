@@ -252,12 +252,12 @@ export default {
             e.nativeEvent.preventDefault();
             e.nativeEvent.stopPropagation();
             let id = e.event.id;
-            this.$router.push(`/appointments/view?id=${e.event.id}`)
+            this.$router.push(`/events/view?id=${e.event.id}`)
 
         },
         showTime(e) {
             console.log('SHOWTIME');
-            this.$router.push(`/appointments/create?t=${e.time}&d=${e.date}`)
+            this.$router.push(`/events/create?t=${e.time}&d=${e.date}`)
         },
         /* showEvent({ nativeEvent, event }) {
              const open = () => {

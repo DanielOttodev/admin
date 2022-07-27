@@ -8,7 +8,7 @@
         </v-sheet>
       </v-col>
       <v-col lg="4" justify="end">
-        <v-btn class="text-capitalize primary"> New Appointment </v-btn>
+        <v-btn class="text-capitalize primary" @click="newEvent"> New Event </v-btn>
         <v-btn class="text-capitalize" color="orange lighten-2" outlined text>Guest Checkout</v-btn>
         <v-sheet class="mt-10">
           <v-card>
@@ -26,9 +26,29 @@
 </template>
 
 <script>
+
 import DashboardCard from "../components/dashboard/DashboardCard.vue";
 export default {
   components: { DashboardCard },
   name: "IndexPage",
+  methods: {
+    newEvent() {
+      let time = new Date();
+      let date = time.getDate() + '/' + time.getMonth() + '/' + time.getFullYear();
+
+      let hour = time.getHours()
+      let mins = time.getMinutes();
+      if (mins < 55 && mins > 5) {
+        mins = Math.ceil(mins / 5) * 5;
+        mins = mins.toString();
+      }
+      else {
+        mins = '00'
+      }
+      time = hour + ':' + mins
+
+      this.$router.push(`/events/create?t=${time}&d=${date}`)
+    }
+  }
 };
 </script>

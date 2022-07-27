@@ -12,8 +12,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - admin",
-    title: "admin",
+    titleTemplate: "%s - Online Bookings Manager",
+    title: "Foxster",
     htmlAttrs: {
       lang: "en",
     },

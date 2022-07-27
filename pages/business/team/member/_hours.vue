@@ -25,7 +25,7 @@
                             </v-select>
                         </v-col>
                         <v-col>
-                            <v-switch v-model="i.in" inset dense label="Available" color="success">
+                            <v-switch v-model="i.in" inset dense label="Available" color="green">
                             </v-switch>
                         </v-col>
                     </v-row>

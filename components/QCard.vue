@@ -16,7 +16,10 @@ export default {
     }),
     methods: {
         routeTo() {
-            this.$router.push(`/business${this.link}`)
+            if (this.link != 'none') {
+                this.$router.push(`/business${this.link}`)
+            }
+
         }
     }
 }

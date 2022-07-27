@@ -12,14 +12,13 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app dark color="blue-grey darken-1">
+    <v-app-bar :clipped-left="clipped" fixed app light color="blue-grey lighten-4">
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
       </v-btn>
-
-      <v-toolbar-title v-text="title" />
-      <v-icon right>mdi-storefront</v-icon>
-
+      <v-toolbar-title>
+        <v-img :src="img" max-height="100" max-width="300"></v-img>
+      </v-toolbar-title>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
@@ -90,7 +89,11 @@ export default {
       right: true,
       rightDrawer: false,
       title: "ScheduleM8",
+      img: '/fox.png'
     };
   },
 };
 </script>
+
+<style scoped>
+</style>
