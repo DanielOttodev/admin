@@ -6,7 +6,8 @@
                     <v-btn text color="primary">
                         Home
                     </v-btn>
-                    <v-btn @click="toSignUp" text color="grey">Free Trial</v-btn>
+                    <v-btn @click="toLogin" text color="grey">Login <v-icon right>mdi-account-circle</v-icon>
+                    </v-btn>
                 </v-row>
             </v-container>
             <v-container fill-height>
@@ -24,8 +25,8 @@
                                 <v-row>
                                     <v-col cols="12">
                                         <v-card-title style="color:#41B883; font-weight:bold;"
-                                            class="text--center justify-center text-lg-h4" justify="center">Login
-                                            to Your Account
+                                            class="text--center justify-center text-lg-h4" justify="center">Create
+                                            a New Account
                                         </v-card-title>
 
                                         <v-card-text>
@@ -35,7 +36,7 @@
                                             <v-text-field append-icon="mdi-lock" v-model="pass" filled rounded
                                                 label="Password">
                                             </v-text-field>
-                                            <v-btn @click="createUser" rounded x-large color="primary">Login</v-btn>
+                                            <v-btn @click="createUser" rounded x-large color="primary">Sign Up</v-btn>
                                             <v-progress-linear v-if="loading" class="mt-3" indeterminate
                                                 color="primary">
                                             </v-progress-linear>
@@ -67,13 +68,14 @@ export default {
         errmessage: ''
     }),
     methods: {
-        toSignUp() {
-            this.$router.push('/signup')
+        toLogin() {
+            this.$router.push('/login')
         },
+
         async createUser() {
             try {
                 this.loading = true
-                await this.$fire.auth.signInWithEmailAndPassword(
+                await this.$fire.auth.createUserWithEmailAndPassword(
                     this.user.trim(), this.pass
                 )
                 this.loading = false
