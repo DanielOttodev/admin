@@ -9,7 +9,7 @@
       </v-col>
       <v-col lg="4" justify="end">
         <v-btn class="text-capitalize primary" @click="newEvent"> New Event </v-btn>
-        <v-btn class="text-capitalize" color="orange lighten-2" outlined text>Guest Checkout</v-btn>
+        <v-btn class="text-capitalize" color="primary" outlined text>Guest Checkout</v-btn>
         <v-sheet class="mt-10">
           <v-card>
             <v-card-title>
