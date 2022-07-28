@@ -7,6 +7,7 @@ export default {
     color: 'blue',
     height: '5px'
   },
+  transition:'home',
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
 

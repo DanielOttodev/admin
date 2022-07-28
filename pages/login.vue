@@ -2,7 +2,7 @@
     <Transition>
         <v-sheet class="bgimg">
             <v-container>
-                <v-row class="mt-5" justify="end">
+                <v-row class="mt-5 mb-0" justify="end">
                     <v-btn text color="primary">
                         Home
                     </v-btn>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+
+
 export default {
     layout: 'login',
     data: () => ({
@@ -68,15 +70,16 @@ export default {
         async createUser() {
             try {
                 this.loading = true
-                await this.$fire.auth.createUserWithEmailAndPassword(
+                await this.$fire.auth.signInWithEmailAndPassword(
                     this.user.trim(), this.pass
                 )
-                alert('success')
                 this.loading = false
+                window.location = '/'
+                console.log('valid');
             }
             catch (e) {
                 this.loading = false;
-                console.log(e);
+                alert(e);
                 if (e.message === 'EMAIL_EXISTS') {
                     this.errmessage = 'That email already exists'
                     this.error = true;
@@ -99,5 +102,16 @@ export default {
     background-image: url('~@/assets/bg2.png');
     background-size: 50%;
 
+}
+</style>
+<style>
+.home-enter-active,
+.home-leave-active {
+    transition: opacity .5s;
+}
+
+.home-enter,
+.home-leave-active {
+    opacity: 0;
 }
 </style>

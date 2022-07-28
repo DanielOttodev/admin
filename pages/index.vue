@@ -53,3 +53,15 @@ export default {
   }
 };
 </script>
+
+<style>
+.home-enter-active,
+.home-leave-active {
+  transition: opacity .45s;
+}
+
+.home-enter,
+.home-leave-active {
+  opacity: 0;
+}
+</style>
