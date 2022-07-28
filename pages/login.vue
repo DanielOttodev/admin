@@ -29,11 +29,17 @@
                                         </v-card-title>
 
                                         <v-card-text>
-                                            <v-text-field append-icon="mdi-account" filled rounded label="Email">
+                                            <v-text-field append-icon="mdi-account" v-model="user" filled rounded
+                                                label="Email">
                                             </v-text-field>
-                                            <v-text-field append-icon="mdi-lock" filled rounded label="Password">
+                                            <v-text-field append-icon="mdi-lock" v-model="pass" filled rounded
+                                                label="Password">
                                             </v-text-field>
-                                            <v-btn rounded x-large color="primary">Login</v-btn>
+                                            <v-btn @click="createUser" rounded x-large color="primary">Login</v-btn>
+                                            <v-progress-linear v-if="loading" class="mt-3" indeterminate
+                                                color="primary">
+                                            </v-progress-linear>
+                                            <p v-if="error">{{ errmessage }}</p>
                                         </v-card-text>
                                     </v-col>
                                 </v-row>
@@ -50,7 +56,34 @@
 
 <script>
 export default {
-    layout: 'login'
+    layout: 'login',
+    data: () => ({
+        user: '',
+        pass: '',
+        loading: false,
+        error: false,
+        errmessage: ''
+    }),
+    methods: {
+        async createUser() {
+            try {
+                this.loading = true
+                await this.$fire.auth.createUserWithEmailAndPassword(
+                    this.user.trim(), this.pass
+                )
+                alert('success')
+                this.loading = false
+            }
+            catch (e) {
+                this.loading = false;
+                console.log(e);
+                if (e.message === 'EMAIL_EXISTS') {
+                    this.errmessage = 'That email already exists'
+                    this.error = true;
+                }
+            }
+        }
+    }
 }
 </script>
 

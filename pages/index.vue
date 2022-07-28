@@ -29,6 +29,7 @@
 
 import DashboardCard from "../components/dashboard/DashboardCard.vue";
 export default {
+
   components: { DashboardCard },
   name: "IndexPage",
   methods: {

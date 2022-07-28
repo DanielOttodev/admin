@@ -42,7 +42,25 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/firebase'],
+  firebase:{
+    config:{
+      apiKey: "AIzaSyB9iu-MS8cdnQEhrdt_EhfLop3-xoIoA8w",
+      authDomain: "montii-scheduler.firebaseapp.com",
+      projectId: "montii-scheduler",
+      storageBucket: "montii-scheduler.appspot.com",
+      messagingSenderId: "94720676693",
+      appId: "1:94720676693:web:4af538ac5bc82e15f015dc",
+      measurementId: "G-WFXSKL7XC9",
+    },
+    services:{
+      auth:{
+        initialize: {
+          onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION",
+        } 
+      }
+    }
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

@@ -20,6 +20,7 @@
         <v-img :src="img" max-height="100" max-width="300"></v-img>
       </v-toolbar-title>
       <v-spacer />
+
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -31,12 +32,16 @@
     </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+
+        <v-list-item>
+          <v-row justify="center">
+            <v-btn @click="signOut" grow color="primary" text>
+              Sign Out
+            </v-btn>
+          </v-row>
+
         </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
     <v-footer :absolute="!fixed" app>
@@ -48,6 +53,13 @@
 <script>
 export default {
   name: "DefaultLayout",
+  middleware: 'auth',
+  methods: {
+    signOut() {
+      this.$fire.auth.signOut();
+      this.$router.push('/login')
+    }
+  },
   data() {
     return {
       clipped: true,
