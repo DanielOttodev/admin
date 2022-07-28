@@ -29,17 +29,18 @@
                                         </v-card-title>
 
                                         <v-card-text>
-                                            <v-text-field append-icon="mdi-account" v-model="user" filled rounded
-                                                label="Email">
+                                            <v-text-field @keydown="reset" type="email" append-icon="mdi-account"
+                                                v-model="user" filled rounded label="Email">
                                             </v-text-field>
-                                            <v-text-field append-icon="mdi-lock" v-model="pass" filled rounded
-                                                label="Password">
+                                            <v-text-field type="password" append-icon="mdi-lock" v-model="pass" filled
+                                                rounded label="Password">
                                             </v-text-field>
                                             <v-btn @click="createUser" rounded x-large color="primary">Login</v-btn>
                                             <v-progress-linear v-if="loading" class="mt-3" indeterminate
                                                 color="primary">
                                             </v-progress-linear>
-                                            <p v-if="error">{{ errmessage }}</p>
+                                            <p class="text-lg-h6 mt-3" style="color:grey;" v-if="error">{{ errmessage }}
+                                            </p>
                                         </v-card-text>
                                     </v-col>
                                 </v-row>
@@ -57,6 +58,8 @@
 <script>
 
 
+
+
 export default {
     layout: 'login',
     data: () => ({
@@ -64,30 +67,57 @@ export default {
         pass: '',
         loading: false,
         error: false,
-        errmessage: ''
+        errmessage: '',
+        okemail: null
     }),
     methods: {
+        reset() {
+            this.errmessage = ''
+            this.error = false;
+        },
+
         toSignUp() {
             this.$router.push('/signup')
         },
         async createUser() {
-            try {
-                this.loading = true
-                await this.$fire.auth.signInWithEmailAndPassword(
-                    this.user.trim(), this.pass
-                )
-                this.loading = false
-                window.location = '/'
-                console.log('valid');
-            }
-            catch (e) {
-                this.loading = false;
-                alert(e);
-                if (e.message === 'EMAIL_EXISTS') {
-                    this.errmessage = 'That email already exists'
-                    this.error = true;
+            let result = this.validateEmail()
+            if (result) {
+                try {
+                    this.loading = true
+                    await this.$fire.auth.signInWithEmailAndPassword(
+                        this.user.trim(), this.pass
+                    )
+                    this.loading = false
+                    window.location = '/'
+                    console.log('valid');
                 }
+                catch (e) {
+                    this.loading = false;
+                    this.error = true
+                    this.errmessage = e.message
+                    console.log(e);
+                }
+            } else {
+
             }
+
+        },
+        validateEmail() {
+            let email = this.user.toString();
+            if (!email.includes('@')) {
+
+                this.error = true
+                this.errmessage = 'Uh Oh! This email looks invalid.'
+            }
+            if (!email.includes('.')) {
+                this.error = true
+                this.errmessage = 'Uh Oh! This email looks invalid.'
+                return false
+
+
+            }
+            else return true
+
         }
     }
 }
