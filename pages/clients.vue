@@ -3,6 +3,20 @@
         <v-row>
             <v-col cols="12">
                 <v-card>
+                    <v-card-title>Clients</v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text class="text-center text-body-1">
+                        There are no clients to show! Get started by adding a client or importing a list from a csv
+                        file.
+                    </v-card-text>
+
+                    <v-card-actions class="justify-center">
+                        <v-btn x-large color="primary" class="text-capitalize">Add New</v-btn>
+                        <v-btn x-large outlined color="primary" class="text-capitalize">Import from CSV</v-btn>
+                    </v-card-actions>
+
+                </v-card>
+                <v-card v-if="clients.length >= 1">
                     <v-card-title>
                         Clients
                         <v-btn class="primary" absolute right x-small>
@@ -39,6 +53,9 @@
 
 <script>
 export default {
+    data: () => ({
+        clients: []
+    })
 
 }
 </script>
