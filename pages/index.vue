@@ -50,6 +50,9 @@ export default {
 
       this.$router.push(`/events/create?t=${time}&d=${date}`)
     }
+  },
+  mounted: () => {
+
   }
 };
 </script>

@@ -102,6 +102,7 @@ export default {
             }
 
         },
+
         validateEmail() {
             let email = this.user.toString();
             if (!email.includes('@')) {
