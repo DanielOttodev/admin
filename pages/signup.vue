@@ -50,7 +50,7 @@
                     </Transition>
                 </v-row>
             </v-container> -->
-            <SignUp1 />
+            <SignUp1 @selected="serviceSelected" v-if="selectService == ''" />
         </v-sheet>
     </Transition>
 </template>
@@ -65,7 +65,8 @@ export default {
         pass: '',
         loading: false,
         error: false,
-        errmessage: ''
+        errmessage: '',
+        selectService: ''
     }),
     methods: {
         toLogin() {
@@ -90,6 +91,9 @@ export default {
                     this.error = true;
                 }
             }
+        },
+        serviceSelected(e) {
+            alert(e);
         }
     }
 }

@@ -56,11 +56,26 @@ export default {
     data: () => ({
         services: [{
             name: 'Hair', icon: 'mdi-content-cut'
-        }, { name: 'Cosmetics', icon: 'mdi-eye' }, { name: 'Spa & Massage', icon: 'mdi-spa-outline' }, { name: 'Personal Training', icon: 'mdi-weight-lifter' }, { name: 'Health', icon: 'mdi-heart-pulse' }, { name: 'General services', icon: 'mdi-view-grid-plus' }]
+        }, { name: 'Cosmetics', icon: 'mdi-eye' }, { name: 'Spa & Massage', icon: 'mdi-spa-outline' }, { name: 'Personal Training', icon: 'mdi-weight-lifter' }, { name: 'Health', icon: 'mdi-heart-pulse' }, { name: 'General services', icon: 'mdi-view-grid-plus' }],
+        selected: []
     }),
     methods: {
         select(e) {
+            this.$emit('selected', e.name)
             console.log(e);
+            if (!this.selected.includes(e.name)) {
+                this.selected.push(e.name);
+            } else {
+                let index = this.selected.indexOf(e.name);
+                // Check not last element
+                if (index !== 1) {
+                    this.selected.splice(index, 1);
+                } else {
+                    this.selected = [];
+                }
+
+            }
+
         }
     }
 }
