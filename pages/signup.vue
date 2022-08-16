@@ -10,7 +10,7 @@
                     </v-btn>
                 </v-row>
             </v-container>
-            <v-container fill-height>
+            <!---- <v-container fill-height>
 
                 <v-row justify="end" align="center" no-gutters class="row">
                     <Transition>
@@ -49,8 +49,8 @@
                         </v-card>
                     </Transition>
                 </v-row>
-            </v-container>
-
+            </v-container> -->
+            <SignUp1 />
         </v-sheet>
     </Transition>
 </template>
