@@ -23,12 +23,12 @@
                         <v-row>
                             <v-col cols="12">
                                 <v-card-title style="color:#41B883; font-weight:bold;"
-                                    class="text--center justify-center text-lg-h6" justify="center">What services do you
-                                    offer?
+                                    class="text--center justify-center text-lg-h6" justify="center">How many people in
+                                    your business?
                                 </v-card-title>
                                 <v-container>
                                     <v-row>
-                                        <v-col cols="12" lg="4" sm="6" v-for="item in services" :key="item.name">
+                                        <v-col cols="12" lg="6" sm="6" v-for="item in services" :key="item.name">
 
                                             <v-sheet @click="select(item)" rounded
                                                 class="pa-5 text-center mysheet align-center" outlined>
@@ -51,8 +51,8 @@
 export default {
     data: () => ({
         services: [{
-            name: 'Hair', icon: 'mdi-content-cut', id: 1
-        }, { name: 'Cosmetics', icon: 'mdi-eye', id: 2 }, { name: 'Spa & Massage', icon: 'mdi-spa-outline', id: 3 }, { name: 'Personal Training', icon: 'mdi-weight-lifter', id: 4 }, { name: 'Health', icon: 'mdi-heart-pulse', id: 5 }, { name: 'General services', icon: 'mdi-view-grid-plus', id: 6 }],
+            name: 'Just Me', icon: 'mdi-account', id: 1
+        }, { name: '2-7 staff', icon: 'mdi-account-multiple', id: 2 }, { name: '8-15 staff', icon: 'mdi-account-group', id: 3 }, { name: 'Over 15 staff', icon: 'mdi-google-classroom', id: 4 }],
         selected: []
     }),
     methods: {

@@ -1,13 +1,29 @@
 <template>
     <Transition>
+
         <v-sheet class="bgimg">
-            <v-container>
+
+            <ul class="pa-5" color=""
+                style="display:flex;  justify-content:center; list-style: none; background-color:#f5f5f5;">
+
+                <li>
+                    <v-btn text color=" primary">
+                        Home
+                    </v-btn>
+                </li>
+                <li>
+                    <v-btn @click="toLogin" text color="grey">Login <v-icon right>mdi-account-circle</v-icon>
+                    </v-btn>
+                </li>
+            </ul>
+            <v-container fluid>
                 <v-row class="mt-5 mb-0" justify="end">
-                    <v-btn text color="primary">
+
+                    <!----   <v-btn text color="primary">
                         Home
                     </v-btn>
                     <v-btn @click="toLogin" text color="grey">Login <v-icon right>mdi-account-circle</v-icon>
-                    </v-btn>
+                    </v-btn> -->
                 </v-row>
             </v-container>
             <!---- <v-container fill-height>
@@ -51,57 +67,62 @@
                 </v-row>
             </v-container> -->
             <SignUp1 @selected="serviceSelected" v-if="selectService == ''" />
+            <SignUp2 @selected="staffSelected" v-else />
         </v-sheet>
     </Transition>
 </template>
 
 <script>
+import SignUp2 from "../components/SignUp2.vue";
 
 
 export default {
-    layout: 'login',
+    layout: "login",
     data: () => ({
-        user: '',
-        pass: '',
+        user: "",
+        pass: "",
         loading: false,
         error: false,
-        errmessage: '',
-        selectService: ''
+        errmessage: "",
+        selectService: "",
+        selectStaff: ""
     }),
     methods: {
         toLogin() {
-            this.$router.push('/login')
+            this.$router.push("/login");
         },
-
         async createUser() {
             try {
-                this.loading = true
-                await this.$fire.auth.createUserWithEmailAndPassword(
-                    this.user.trim(), this.pass
-                )
-                this.loading = false
-                window.location = '/'
-                console.log('valid');
+                this.loading = true;
+                await this.$fire.auth.createUserWithEmailAndPassword(this.user.trim(), this.pass);
+                this.loading = false;
+                window.location = "/";
+                console.log("valid");
             }
             catch (e) {
                 this.loading = false;
                 alert(e);
-                if (e.message === 'EMAIL_EXISTS') {
-                    this.errmessage = 'That email already exists'
+                if (e.message === "EMAIL_EXISTS") {
+                    this.errmessage = "That email already exists";
                     this.error = true;
                 }
             }
         },
         serviceSelected(e) {
-            alert(e);
+            this.selectService = e;
+        },
+        staffSelected(e) {
+            alert(e)
+            this.selectStaff = e;
         }
-    }
+    },
+    components: { SignUp2 }
 }
 </script>
 
 <style >
 .bgimg {
-    background-image: url('~@/assets/bg2.png');
+
     width: 100vw;
     height: 100vh;
 }
