@@ -67,7 +67,8 @@
                 </v-row>
             </v-container> -->
             <SignUp1 @selected="serviceSelected" v-if="selectService == ''" />
-            <SignUp2 @selected="staffSelected" v-else />
+            <SignUp2 @selected="staffSelected" v-if="selectService != '' && selectStaff == ''" />
+            <SignUp3 @createNew="createNewOrgUser" v-if="selectStaff != '' && selectService != ''" />
         </v-sheet>
     </Transition>
 </template>
@@ -112,8 +113,13 @@ export default {
             this.selectService = e;
         },
         staffSelected(e) {
-            alert(e)
+
             this.selectStaff = e;
+        },
+        createNewOrgUser(e) {
+            e.serviceType = this.selectService
+            e.staffLimit = this.selectStaff
+            console.log(e);
         }
     },
     components: { SignUp2 }
