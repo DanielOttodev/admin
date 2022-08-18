@@ -38,6 +38,7 @@
 <script>
 import SignUp2 from "../components/SignUp2.vue";
 import { routes } from '../routes'
+import { firebase } from '@nuxtjs/firebase'
 
 export default {
     layout: "login",
@@ -58,16 +59,27 @@ export default {
             const createUser = usr
             try {
                 this.loading = true;
-                const newUser = await this.$fire.auth.createUserWithEmailAndPassword(createUser.email.trim(), createUser.pass);
+                const newUser = await this.$fire.auth.createUserWithEmailAndPassword(createUser.email.trim(), createUser.pass).then((fbUser) => {
+                    if (fbUser) {
+                        console.log('USER', fbUser.user);
+                        this.$fire.auth.currentUser.sendEmailVerification();
+                    } else {
+                        console.log('No User')
+                    }
+
+
+                });
                 this.loading = false;
                 return newUser
             }
             catch (e) {
                 this.loading = false;
+                console.log(e);
                 alert(e);
                 return false
             }
         },
+
         serviceSelected(e) {
             this.selectService = e;
         },
@@ -76,29 +88,35 @@ export default {
             this.selectStaff = e;
         },
         async createNewOrgUser(e) {
-            e.serviceType = this.selectService
-            e.staffLimit = this.selectStaff
-            const userCreated = await this.createUser(e)
-            console.log(userCreated);
-            if (userCreated) {
-                e.uid = userCreated.user.uid
+            try {
+                e.serviceType = this.selectService
+                e.staffLimit = this.selectStaff
+                const userCreated = await this.createUser(e)
+                console.log(userCreated);
+                if (userCreated) {
 
-                // Successfully created the user and received the object back from FB - 
-                fetch(routes.createNewOrg, {
-                    method: 'POST',
-                    headers: {
-                        authorization: '',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(e)
-                }).then(res => res.json()).then((x) => {
-                    console.log(x);
-                    alert('Success! Please check complete your sign up with the email confirmation')
-                })
+                    e.uid = userCreated.user.uid
+
+                    // Successfully created the user and received the object back from FB - 
+                    fetch(routes.createNewOrg, {
+                        method: 'POST',
+                        headers: {
+                            authorization: '',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(e)
+                    }).then(res => res.json()).then((x) => {
+                        console.log(x);
+                        alert('Success! Please check complete your sign up with the email confirmation')
+                    })
+                }
+                else {
+                    // Error creating user
+                }
+            } catch (error) {
+                console.log(error);
             }
-            else {
-                // Error creating user
-            }
+
 
         }
     },
