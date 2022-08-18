@@ -7,16 +7,7 @@
                     <v-img class="mx-auto" src="/montelo.png" height="75" width="75">
                     </v-img>
 
-                    <v-card-title class="justify-center text-h4">Sign up for free with a 14-day
-                        trial
-                    </v-card-title>
-                    <ul style="display:flex; justify-content: space-around; color:grey; font-size:15px;">
-                        <li class="mx-2">
-                            Up to 50 Bookings
-                        </li>
-                        <li class="mx-2">No credit card required</li>
-                        <li class="mx-2">No contracts or obligations</li>
-                    </ul>
+
                     <v-divider class="mt-2">
                     </v-divider>
                     <v-container>
