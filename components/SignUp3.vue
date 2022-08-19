@@ -38,6 +38,9 @@
                                             <v-btn @click="save" block class="text-capitalize" color="primary" x-large>
                                                 Submit
                                             </v-btn>
+                                            <v-progress-circular v-if="wait" :size="70" class="mt-5" indeterminate
+                                                color="green">
+                                            </v-progress-circular>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -53,6 +56,7 @@
 
 <script>
 export default {
+    props: ['wait'],
     data: () => ({
         businessName: '',
         phone: '',

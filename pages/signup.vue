@@ -30,7 +30,7 @@
                 <SignUp2 @selected="staffSelected" v-if="selectService != '' && selectStaff == ''" />
             </Transition>
 
-            <SignUp3 @createNew="createNewOrgUser" v-if="selectStaff != '' && selectService != ''" />
+            <SignUp3 :wait="loading" @createNew="createNewOrgUser" v-if="selectStaff != '' && selectService != ''" />
         </v-sheet>
     </Transition>
 </template>
@@ -63,6 +63,7 @@ export default {
                     if (fbUser) {
                         console.log('USER', fbUser.user);
                         this.$fire.auth.currentUser.sendEmailVerification();
+                        return fbUser
                     } else {
                         console.log('No User')
                     }
@@ -84,7 +85,6 @@ export default {
             this.selectService = e;
         },
         staffSelected(e) {
-
             this.selectStaff = e;
         },
         async createNewOrgUser(e) {

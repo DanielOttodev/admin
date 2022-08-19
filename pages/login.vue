@@ -32,13 +32,16 @@
                                             <v-text-field @keydown="reset" type="email" append-icon="mdi-account"
                                                 v-model="user" filled rounded label="Email">
                                             </v-text-field>
-                                            <v-text-field type="password" append-icon="mdi-lock" v-model="pass" filled
-                                                rounded label="Password">
+                                            <v-text-field @keypress="checkEnter" type="password" append-icon="mdi-lock"
+                                                v-model="pass" filled rounded label="Password">
                                             </v-text-field>
-                                            <v-btn @click="createUser" rounded x-large color="primary">Login</v-btn>
+                                            <v-btn @click="login" rounded x-large color="primary">Login</v-btn>
                                             <v-progress-linear v-if="loading" class="mt-3" indeterminate
                                                 color="primary">
                                             </v-progress-linear>
+                                            <h3 v-if="displayMsg" class="text--secondary mt-4">Email
+                                                not verified! Check your inbox for a
+                                                verification link and try again.</h3>
                                             <p class="text-lg-h6 mt-3" style="color:grey;" v-if="error">{{ errmessage }}
                                             </p>
                                         </v-card-text>
@@ -68,7 +71,9 @@ export default {
         loading: false,
         error: false,
         errmessage: '',
-        okemail: null
+        okemail: null,
+        userVerified: false,
+        displayMsg: false
     }),
     methods: {
         reset() {
@@ -79,16 +84,33 @@ export default {
         toSignUp() {
             this.$router.push('/signup')
         },
-        async createUser() {
+        async checkEnter(e) {
+            this.displayMsg = false;
+            if (e.key === 'Enter') {
+                this.login();
+            }
+        },
+        async login() {
             let result = this.validateEmail()
             if (result) {
                 try {
                     this.loading = true
                     await this.$fire.auth.signInWithEmailAndPassword(
                         this.user.trim(), this.pass
-                    )
+                    ).then(() => {
+                        if (this.$fire.auth.currentUser.emailVerified) {
+                            window.location = '/'
+
+                        }
+                        else {
+                            this.$fire.auth.signOut()
+                            this.displayMsg = true;
+                        }
+
+                    })
+
                     this.loading = false
-                    window.location = '/'
+
                     console.log('valid');
                 }
                 catch (e) {
