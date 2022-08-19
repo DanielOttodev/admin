@@ -59,11 +59,10 @@
 </template>
 
 <script>
-
-
-
+import { routes } from '../routes';
 
 export default {
+
     layout: 'login',
     data: () => ({
         user: '',
@@ -99,7 +98,11 @@ export default {
                         this.user.trim(), this.pass
                     ).then(() => {
                         if (this.$fire.auth.currentUser.emailVerified) {
-                            window.location = '/'
+                            fetch(`${routes.getOrg}/${this.$fire.auth.currentUser.uid}`).then(x => x.json()).then((org) => {
+                                console.log(org);
+                                window.location = '/'
+                            })
+
 
                         }
                         else {
@@ -114,8 +117,10 @@ export default {
                     console.log('valid');
                 }
                 catch (e) {
+
                     this.loading = false;
                     this.error = true
+                    this.$fire.auth.signOut()
                     this.errmessage = e.message
                     console.log(e);
                 }

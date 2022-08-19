@@ -13,4 +13,8 @@ export const state = () => ({
         state.user = false;
       }
     },
+    CurrentOrg: (state, orgId ) => {
+      state.user.orgId = orgId
+    }
+
   };
