@@ -7,7 +7,7 @@
       <v-card-text>
         <h3 class="mb-5">Staff Member Information</h3>
 
-        <v-text-field v-model="name" outlined label="Name"></v-text-field>
+        <v-text-field v-model="displayname" outlined label="Name"></v-text-field>
         <v-textarea v-model="bio" label="Staff Bio - This will show to clients when they view your profile." outlined>
         </v-textarea>
         <v-switch v-model="acceptClient" label="Accepting New Clients"></v-switch>
@@ -34,13 +34,13 @@
 </template>
 
 <script>
-
+import { routes } from '../routes';
 export default {
   props: ['id'],
   data: () => ({
     acceptClient: true,
     bio: "",
-    name: "",
+    displayname: "",
     user: '',
     email: '',
     pass: '',
@@ -61,8 +61,29 @@ export default {
       console.log(this.existing);
       if (this.existing) {
         this.name = this.$store.state.users.user.FirstName + ' ' + this.$store.state.users.user.LastName
-
       }
+    },
+    async createNew() {
+      let token = await this.$fire.auth.currentUser.getIdToken();
+      fetch(routes.addUser, {
+        method: 'POST',
+        headers: {
+          clienttoken: token,
+          orgId: this.$store.state.orgId
+        },
+        body: JSON.stringify({
+          email: this.email,
+          name: this, displayname,
+          user: this.user,
+          phone: this.phone,
+          acceptClient: this.acceptClient,
+          bio: this.bio
+
+
+        })
+      }).then(res => res.json()).then((x) => {
+        console.log(x);
+      })
     }
   },
   created() {
