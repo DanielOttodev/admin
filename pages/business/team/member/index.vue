@@ -23,15 +23,19 @@
               </h4>
               <h4 class="ml-7">
                 Notifications:
-                <span style="font-weight: 400">{{ notify_email }}</span>
+                <span style="font-weight: 400">{{ email }}</span>
               </h4>
             </v-col>
           </v-row>
           <v-card-actions>
             <v-row>
               <v-col>
-                <v-btn @click="editInfo()" text color="primary" outlined class="text-capitalize float-right">Edit
+                <v-btn @click="deleteUser" text color="red" class="ml-2 text-capitalize float-right">Delete
+                  User
                 </v-btn>
+                <v-btn @click="editInfo" text color="primary" outlined class="text-capitalize float-right">Edit
+                </v-btn>
+
               </v-col>
             </v-row>
           </v-card-actions>
@@ -74,21 +78,33 @@ import StaffWorkHours from "../../../../components/StaffWorkHours.vue";
 import GoBackButton from "../../../../components/GoBackButton.vue";
 export default {
   data: () => ({
-    email: "otto_281@hotmail.com",
-    phone: "0413864377",
-    notify_email: "otto_281@hotmail.com",
-    name: "Daniel Otto",
+
   }),
   components: { StaffWorkHours, GoBackButton },
-
   methods: {
     pageLoad() {
-      // Fetch staff details
+      this.email = this.$store.state.users.Email
+      console.log('mounted!')
+      console.log(this.email)
     },
     editInfo() {
       this.$router.push(`/business/team/edit?id=${this.$route.query.id}`);
 
     },
+  },
+  computed: {
+    email() {
+      return this.$store.state.users.user.Email
+    },
+    phone() {
+      return this.$store.state.users.user.Phone
+    },
+    name() {
+      return `${this.$store.state.users.user.FirstName} ${this.$store.state.users.user.LastName}`
+    }
+  },
+  mounted: () => {
+
   },
 };
 </script>

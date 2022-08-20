@@ -46,6 +46,7 @@ export default {
       this.$router.push('/business/team/add')
     },
     toStaff(e) {
+      this.$store.commit('users/setUser', e)
       this.$router.push(`/business/team/member?id=${e.Uid}`)
     },
     async listStaff() {
