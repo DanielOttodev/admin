@@ -101,7 +101,7 @@
                     <v-card-title class="text-h3"> $59
                         <small class="body-2">AUD/MO</small>
                     </v-card-title>
-                    <v-text-field readonly rounded filled placeholder="75 SMS per month included">
+                    <v-text-field readonly rounded filled placeholder="300 SMS per month included">
                     </v-text-field>
                     <v-btn block outlined color="primary" class="mb-5 text-capitalize">Upgrade to PRO</v-btn>
                     <v-divider></v-divider>
