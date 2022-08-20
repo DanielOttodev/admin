@@ -16,7 +16,7 @@ export const state = () => ({
     },
     CurrentOrg: (state, orgId ) => {
       console.log('ORG:', orgId)
-      state.orgId = {org: orgId}
+      state.orgId = orgId
       console.log('CURRENTORG:',state)
     }
 

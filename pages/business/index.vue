@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col lg="4" v-for="i in items" :key="i">
+            <v-col lg="4" v-for="i in items" :key="i.title">
                 <v-hover>
                     <QCard :title="i.title" :description="i.desc" :icon="i.icon" :link="i.link" />
                 </v-hover>

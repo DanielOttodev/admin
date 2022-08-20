@@ -27,7 +27,7 @@
     </v-app-bar>
     <v-main class="grey lighten-4">
       <v-container fluid>
-        <Nuxt />
+        <Nuxt keep-alive />
       </v-container>
     </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
