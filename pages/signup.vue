@@ -1,44 +1,48 @@
 <template>
-    <Transition>
 
-        <v-sheet class="bgimg">
 
-            <ul class="pa-5" color=""
-                style="display:flex;  justify-content:center; list-style: none; background-color:#f5f5f5;">
+    <v-sheet class="bgimg">
 
-                <li>
-                    <v-btn text color=" primary">
-                        Home
-                    </v-btn>
-                </li>
-                <li>
-                    <v-btn @click="toLogin" text color="grey">Login <v-icon right>mdi-account-circle</v-icon>
-                    </v-btn>
-                </li>
-            </ul>
-            <v-container fluid>
-                <v-row class="mt-5 mb-0" justify="end">
+        <ul class="pa-5" color=""
+            style="display:flex;  justify-content:center; list-style: none; background-color:#f5f5f5;">
 
-                </v-row>
-            </v-container>
+            <li>
+                <v-btn text color=" primary">
+                    Home
+                </v-btn>
+            </li>
+            <li>
+                <v-btn @click="toLogin" text color="grey">Login <v-icon right>mdi-account-circle</v-icon>
+                </v-btn>
+            </li>
+        </ul>
+        <v-container fluid>
+            <v-row class="mt-5 mb-0" justify="end">
 
-            <Transition>
-                <SignUp1 @selected="serviceSelected" v-if="selectService == ''" />
-            </Transition>
+            </v-row>
+        </v-container>
+        <div v-if="!success">
+            <SignUp1 @selected="serviceSelected" v-if="selectService == ''" />
 
-            <Transition>
-                <SignUp2 @selected="staffSelected" v-if="selectService != '' && selectStaff == ''" />
-            </Transition>
+
+            <SignUp2 @selected="staffSelected" v-if="selectService != '' && selectStaff == ''" />
+
 
             <SignUp3 :wait="loading" @createNew="createNewOrgUser" v-if="selectStaff != '' && selectService != ''" />
-        </v-sheet>
-    </Transition>
+        </div>
+
+        <SignUpSuccess v-if="success" />
+
+
+    </v-sheet>
+
 </template>
 
 <script>
 import SignUp2 from "../components/SignUp2.vue";
 import { routes } from '../routes'
 import { firebase } from '@nuxtjs/firebase'
+import SignUpSuccess from "../components/SignUpSuccess.vue";
 
 export default {
     layout: "login",
@@ -49,7 +53,8 @@ export default {
         error: false,
         errmessage: "",
         selectService: "",
-        selectStaff: ""
+        selectStaff: "",
+        success: false
     }),
     methods: {
         toLogin() {
@@ -94,9 +99,7 @@ export default {
                 const userCreated = await this.createUser(e)
                 console.log(userCreated);
                 if (userCreated) {
-
                     e.uid = userCreated.user.uid
-
                     // Successfully created the user and received the object back from FB - 
                     fetch(routes.createNewOrg, {
                         method: 'POST',
@@ -106,8 +109,7 @@ export default {
                         },
                         body: JSON.stringify(e)
                     }).then(res => res.json()).then((x) => {
-                        console.log(x);
-                        alert('Success! Please check complete your sign up with the email confirmation')
+                        this.success = true
                     })
                 }
                 else {
@@ -116,11 +118,9 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-
-
         }
     },
-    components: { SignUp2 }
+    components: { SignUp2, SignUpSuccess }
 }
 </script>
 
@@ -139,13 +139,4 @@ export default {
 }
 </style>
 <style>
-.home-enter-active,
-.home-leave-active {
-    transition: opacity .5s;
-}
-
-.home-enter,
-.home-leave-active {
-    opacity: 0;
-}
 </style>

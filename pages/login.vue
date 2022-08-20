@@ -39,9 +39,11 @@
                                             <v-progress-linear v-if="loading" class="mt-3" indeterminate
                                                 color="primary">
                                             </v-progress-linear>
-                                            <h3 v-if="displayMsg" class="text--secondary mt-4">Email
+                                            <h3 v-if="displayMsg" class="text--secondary mt-4">
+                                                <v-icon color="red">mdi-close-circle-outline</v-icon> Email
                                                 not verified! Check your inbox for a
-                                                verification link and try again.</h3>
+                                                verification link and try again.
+                                            </h3>
                                             <p class="text-lg-h6 mt-3" style="color:grey;" v-if="error">{{ errmessage }}
                                             </p>
                                         </v-card-text>
@@ -59,11 +61,10 @@
 </template>
 
 <script>
-
-
-
+import { routes } from '../routes';
 
 export default {
+
     layout: 'login',
     data: () => ({
         user: '',
@@ -99,23 +100,28 @@ export default {
                         this.user.trim(), this.pass
                     ).then(() => {
                         if (this.$fire.auth.currentUser.emailVerified) {
-                            window.location = '/'
-
+                            console.log('fetching')
+                            fetch(`${routes.getOrg}/${this.$fire.auth.currentUser.uid}`).then(x => x.json()).then((response) => {
+                                let json = JSON.parse(response);
+                                let org = json.res.recordset[0].OrgId
+                                this.$store.commit('CurrentOrg', org)
+                                console.log(org);
+                                this.$router.push('/')
+                            })
                         }
                         else {
                             this.$fire.auth.signOut()
                             this.displayMsg = true;
                         }
-
                     })
-
                     this.loading = false
-
                     console.log('valid');
                 }
                 catch (e) {
+
                     this.loading = false;
                     this.error = true
+                    this.$fire.auth.signOut()
                     this.errmessage = e.message
                     console.log(e);
                 }
@@ -124,7 +130,6 @@ export default {
             }
 
         },
-
         validateEmail() {
             let email = this.user.toString();
             if (!email.includes('@')) {
