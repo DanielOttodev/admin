@@ -24,7 +24,7 @@
       <v-card-actions>
         <v-row justify="end">
           <v-col class="justify-end">
-            <v-btn class="float-right text-capitalize" color="primary">Save</v-btn>
+            <v-btn class="float-right text-capitalize" color="primary" @click="createNew">Save</v-btn>
           </v-col>
         </v-row>
 
@@ -64,6 +64,7 @@ export default {
       }
     },
     async createNew() {
+      console.log('Creating new user');
       let token = await this.$fire.auth.currentUser.getIdToken();
       fetch(routes.addUser, {
         method: 'POST',
@@ -73,7 +74,7 @@ export default {
         },
         body: JSON.stringify({
           email: this.email,
-          name: this, displayname,
+          name: this.displayname,
           user: this.user,
           phone: this.phone,
           acceptClient: this.acceptClient,
@@ -83,6 +84,8 @@ export default {
         })
       }).then(res => res.json()).then((x) => {
         console.log(x);
+      }).catch((e) => {
+        console.log(e)
       })
     }
   },
@@ -94,4 +97,5 @@ export default {
 </script>
 
 <style>
+
 </style>

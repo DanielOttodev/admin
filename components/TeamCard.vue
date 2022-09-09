@@ -18,7 +18,7 @@
                   <td class="align-left">
                     <v-icon>mdi-account</v-icon>
                   </td>
-                  <td>{{ item.FirstName }} {{ item.LastName }}</td>
+                  <td>{{ item.Name }} </td>
                   <td>{{ item.Email }}</td>
 
                 </tr>
