@@ -66,27 +66,30 @@ export default {
     async createNew() {
       console.log('Creating new user');
       let token = await this.$fire.auth.currentUser.getIdToken();
-      fetch(routes.addUser, {
-        method: 'POST',
-        headers: {
-          clienttoken: token,
-          orgId: this.$store.state.orgId
-        },
-        body: JSON.stringify({
-          email: this.email,
-          name: this.displayname,
-          user: this.user,
-          phone: this.phone,
-          acceptClient: this.acceptClient,
-          bio: this.bio
+      if (this.$store.state.orgId) {
+        fetch(routes.addUser, {
+          method: 'POST',
+          headers: {
+            clienttoken: token,
+            orgId: this.$store.state.orgId
+          },
+          body: JSON.stringify({
+            email: this.email,
+            name: this.displayname,
+            user: this.user,
+            phone: this.phone,
+            acceptClient: this.acceptClient,
+            bio: this.bio
 
 
+          })
+        }).then(res => res.json()).then((x) => {
+          console.log(x);
+        }).catch((e) => {
+          console.log(e)
         })
-      }).then(res => res.json()).then((x) => {
-        console.log(x);
-      }).catch((e) => {
-        console.log(e)
-      })
+      }
+
     }
   },
   created() {
