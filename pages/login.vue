@@ -107,7 +107,7 @@ export default {
                                 this.$store.commit('CurrentOrg', org)
                                 console.log(org);
                                 this.$router.push('/')
-                            })
+                            }).catch((e) => { alert(e) })
                         }
                         else {
                             this.$fire.auth.signOut()
