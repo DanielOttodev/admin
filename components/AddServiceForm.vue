@@ -36,7 +36,8 @@
                     <v-divider></v-divider>
                     <v-card-actions>
                         <v-row class="my-1 mr-1" justify="end">
-                            <v-btn outlined color="primary" class="mr-2 text-capitalize" dark>Save and create new
+                            <v-btn outlined color="primary" class="mr-2 text-capitalize" @click="test" dark>Save and
+                                create new
                             </v-btn>
                             <v-btn color="primary" class="text-capitalize" dark @click="SaveService">Save</v-btn>
 
@@ -51,18 +52,53 @@
 </template>
 
 <script>
+import { mFetch } from '../functions/common'
+import { routes } from '../routes'
 export default {
     data: () => ({
         payment: 1,
         price: 0,
+        min: 0,
+        hour: 0,
+        desc: '',
+        serviceName: ''
+
 
     }),
     methods: {
-        SaveService() {
+        test() {
+            this.$mFetch('hi hi');
+        },
+        async SaveService() {
+            if (this.min == null) this.min = 0
+            if (this.hour == null) this.hour = 0
+            let token = await this.$fire.auth.currentUser.getIdToken()
 
+            let postBody = {
+                price: this.price,
+                paymentRequired: this.payment,
+                minutes: this.min,
+                hours: this.hour,
+            }
+            postBody = JSON.parse(postBody)
+            fetch(routes.services, {
+                method: 'POST',
+                body: postBody,
+                headers: {
+                    clienttoken: token,
+                    orgId: 'k'
+                }
+            })
+            console.log(postBody);
         },
         updTime(e) {
-            alert(e.thours, e.tminutes);
+
+            this.min = e.tminutes
+            this.hour = e.thours
+        },
+        check() {
+            console.log(this.$store.state)
+            checkStore();
         }
     }
 }
