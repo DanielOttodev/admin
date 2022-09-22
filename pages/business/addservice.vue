@@ -2,10 +2,9 @@
     <v-sheet>
         <v-row>
             <v-col>
-                <GoBackButton/>
+                <GoBackButton />
             </v-col>
         </v-row>
-
         <v-container class="ml-3 mt-5">
             <AddServiceForm />
         </v-container>
@@ -23,4 +22,5 @@ export default {
 </script>
 
 <style>
+
 </style>

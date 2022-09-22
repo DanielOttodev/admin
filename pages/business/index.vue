@@ -22,13 +22,11 @@ export default {
             { title: "Payments", desc: "Connect Stripe to start accepting payments", icon: "mdi-currency-usd", link: "/payments" },
             { title: "Subscription", desc: "Change your plan or update payment details", icon: 'mdi-credit-card-outline', link: '/subscription' },
             { title: "Business Info", desc: "Change your site logo and other info", icon: 'mdi-storefront', link: '/subscription' },
-
-
-
         ]
     })
 }
 </script>
 
 <style>
+
 </style>

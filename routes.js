@@ -8,5 +8,8 @@ exports.routes = {
     listUsers: `${baseUrl}/users/list`,
     getUser: `${baseUrl}/users/`,
     addUser: `${baseUrl}/users`,
-    editUser: `${baseUrl}/users`
+    editUser: `${baseUrl}/users`,
+    // Services
+    services: `${baseUrl}/services`
+    
 }

@@ -2,10 +2,10 @@
     <v-container>
         <v-row>
             <v-col class="shrink">
-                <v-select v-model="thours" outlined label="Hours" :items="hours"></v-select>
+                <v-select @change="updateTime" v-model="thours" outlined label="Hours" :items="hours"></v-select>
             </v-col>
             <v-col class="shrink">
-                <v-select v-model="tminutes" outlined label="Min" :items="hours"></v-select>
+                <v-select @change="updateTime" v-model="tminutes" outlined label="Min" :items="hours"></v-select>
             </v-col>
         </v-row>
     </v-container>
@@ -16,7 +16,7 @@ export default {
     data: () => ({
         thours: null,
         tminutes: null,
-        price: null,
+
     }),
     computed: {
         hours() {
@@ -25,6 +25,11 @@ export default {
                 hours.push(x);
             }
             return hours;
+        }
+    },
+    methods: {
+        updateTime() {
+            this.$emit('updateTime', { thours: this.thours, tminutes: this.tminutes })
         }
     }
 }
