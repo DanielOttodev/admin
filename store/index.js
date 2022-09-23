@@ -18,6 +18,7 @@ export const state = () => ({
     CurrentOrg: (state, orgId ) => {
       console.log('ORG:', orgId)
       state.orgId = orgId
+      localStorage.setItem('orgID',orgId)
       console.log('CURRENTORG:',state)
     }
 

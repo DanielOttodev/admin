@@ -73,19 +73,18 @@ export default {
         async SaveService() {
             if (this.min == null) this.min = 0
             if (this.hour == null) this.hour = 0
-            let token = await this.$fire.auth.currentUser.getIdToken()
-
             let postBody = {
                 price: this.price,
                 paymentRequired: this.payment,
                 minutes: this.min,
                 hours: this.hour,
             }
-            this.$mFetch({
+            const res = await this.$mFetch({
                 body: postBody,
                 route: routes.services,
-                method: 'GET'
+                method: 'POST'
             })
+            console.log(res);
         },
         updTime(e) {
 

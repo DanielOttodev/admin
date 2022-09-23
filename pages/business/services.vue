@@ -8,7 +8,8 @@
                             New</v-btn>
                     </v-card-title>
                     <v-divider></v-divider>
-                    <v-card-text class="text-subtitle-1">You currently have no services! <a @click="toService()">Add a
+                    <v-card-text v-if="services.length < 1" class="text-subtitle-1">You currently have no services! <a
+                            @click="toService()">Add a
                             service
                             to
                             create bookings.
@@ -21,11 +22,29 @@
 </template>
 
 <script>
+import { routes } from '../../routes'
 export default {
+    data: () => ({
+        services: [],
+    }),
+
     methods: {
         toService() {
             this.$router.push('/business/addservice')
-        }
+        },
+        async getServices() {
+            if (this.min == null) this.min = 0
+            if (this.hour == null) this.hour = 0
+            const response = await this.$mFetch({
+                route: routes.services,
+                method: 'GET'
+            })
+            console.log(response.res);
+
+        },
+    },
+    mounted() {
+        this.getServices();
     }
 }
 </script>

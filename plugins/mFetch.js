@@ -1,9 +1,10 @@
 export default (context,inject) => {
     inject('mFetch', async params => {
     let token = await context.$fire.auth.currentUser.getIdToken()
+    console.log(`${params.method} ${params.route}`)
     const head = {
         clienttoken: token,
-      //  orgId : context.$store.orgId
+       orgId : localStorage.getItem('orgID')
     }
     console.log(context);
     if(params.body) params.body = JSON.stringify(params.body);
@@ -12,17 +13,16 @@ export default (context,inject) => {
         orgId : context.$store.state.orgId
     }*/
     if(params.method == 'GET'){
-       console.log('HIT THE GET')
+    
        console.log(head);
-      /*  fetch(params.route,{
+      let res =  fetch(params.route,{
             method: params.Authorization_method,
-            headers: {
-             
-            }
+            headers: head           
         }).then((x) => x.json()).then((result) => {
             return result
         }  
-        )*/
+        )
+        return res;
     }
     else{
         console.log('NOT GET')
