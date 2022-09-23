@@ -36,7 +36,8 @@
                     <v-divider></v-divider>
                     <v-card-actions>
                         <v-row class="my-1 mr-1" justify="end">
-                            <v-btn outlined color="primary" class="mr-2 text-capitalize" @click="test" dark>Save and
+                            <v-btn outlined color="primary" class="mr-2 text-capitalize" @click="SaveService" dark>Save
+                                and
                                 create new
                             </v-btn>
                             <v-btn color="primary" class="text-capitalize" dark @click="SaveService">Save</v-btn>
@@ -80,16 +81,11 @@ export default {
                 minutes: this.min,
                 hours: this.hour,
             }
-            postBody = JSON.parse(postBody)
-            fetch(routes.services, {
-                method: 'POST',
+            this.$mFetch({
                 body: postBody,
-                headers: {
-                    clienttoken: token,
-                    orgId: 'k'
-                }
+                route: routes.services,
+                method: 'GET'
             })
-            console.log(postBody);
         },
         updTime(e) {
 

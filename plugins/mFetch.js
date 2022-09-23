@@ -1,10 +1,20 @@
 export default (context,inject) => {
     inject('mFetch', async params => {
     let token = await context.$fire.auth.currentUser.getIdToken()
-    console.log(token);
-    /*if(params._body) params_body = JSON.stringify(params._body);
-    if(params._method == 'GET'){
-        fetch(params.route,{
+    const head = {
+        clienttoken: token,
+      //  orgId : context.$store.orgId
+    }
+    console.log(context);
+    if(params.body) params.body = JSON.stringify(params.body);
+    /*let _headers = {
+        clienttoken: token,
+        orgId : context.$store.state.orgId
+    }*/
+    if(params.method == 'GET'){
+       console.log('HIT THE GET')
+       console.log(head);
+      /*  fetch(params.route,{
             method: params.Authorization_method,
             headers: {
              
@@ -12,16 +22,19 @@ export default (context,inject) => {
         }).then((x) => x.json()).then((result) => {
             return result
         }  
-        )
+        )*/
     }
     else{
+        console.log('NOT GET')
+        /*
         fetch(route,{
             method : _method,
             body: _body,
             Authorization: auth
         }).then((x) => x.json()).then((result) => {
             return result
-        })
-    }*/
+        })*/
+    }
+    
     });
 }
